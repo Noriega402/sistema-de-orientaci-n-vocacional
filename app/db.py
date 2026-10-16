@@ -1,11 +1,23 @@
+import os
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-DATABASE_URL = "postgresql://dnoriega:kvrn1001.@localhost:5432/vocare"
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+if not DATABASE_URL:
+    raise RuntimeError("Falta configurar la variable DATABASE_URL")
+
+# Compatibilidad con URLs que comiencen con postgres://
+if DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace(
+        "postgres://", "postgresql://", 1
+    )
 
 engine = create_engine(
     DATABASE_URL,
-    echo=True
+    pool_pre_ping=True,
+    echo=False
 )
 
 SessionLocal = sessionmaker(
