@@ -94,4 +94,8 @@ node_modules/
 *.swp
 *.swo
 
+# Incluir el modelo entrenado
+!model/modelo.pkl
+
+# Excluir archivos temporales del modelo
 /model/.modelo.pkl.*
