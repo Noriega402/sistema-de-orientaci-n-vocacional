@@ -1,0 +1,1573 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Vocare – Acceso</title>
+
+    <!-- FUENTES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&family=Montserrat:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ICONO -->
+    <link rel="icon" type="image/png" href="/static/img/logo.png" />
+
+    <!-- TAILWIND -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#0058ac",
+              secondary: "#303854",
+              cream: "#f6f3ea",
+            },
+
+            fontFamily: {
+              playfair: ['"Playfair Display"', "serif"],
+
+              montserrat: ["Montserrat", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      :root {
+        --primary: #0058ac;
+        --error: #dc2626;
+        --success: #16a34a;
+      }
+
+      /* =====================================================
+           FONDO
+           ===================================================== */
+
+      .bg-anim {
+        background: linear-gradient(
+          135deg,
+          #dbeafe 0%,
+          #f0f9ff 30%,
+          #f6f3ea 60%,
+          #e0e7ff 100%
+        );
+
+        background-size: 300% 300%;
+
+        animation: gradShift 10s ease infinite;
+      }
+
+      @keyframes gradShift {
+        0%,
+        100% {
+          background-position: 0% 50%;
+        }
+
+        50% {
+          background-position: 100% 50%;
+        }
+      }
+
+      /* =====================================================
+           ANIMACIONES
+           ===================================================== */
+
+      .card-enter {
+        animation: cardIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      @keyframes cardIn {
+        from {
+          opacity: 0;
+
+          transform: translateY(36px) scale(0.97);
+        }
+
+        to {
+          opacity: 1;
+
+          transform: none;
+        }
+      }
+
+      .form-anim {
+        animation: formIn 0.3s ease both;
+      }
+
+      @keyframes formIn {
+        from {
+          opacity: 0;
+
+          transform: translateY(10px);
+        }
+
+        to {
+          opacity: 1;
+
+          transform: none;
+        }
+      }
+
+      /* =====================================================
+           INPUTS
+           ===================================================== */
+
+      .v-input {
+        width: 100%;
+
+        padding: 0.85rem 1.1rem;
+
+        border: 1.5px solid #e2e8f0;
+
+        border-radius: 12px;
+
+        font-family: "Montserrat", sans-serif;
+
+        font-size: 0.875rem;
+
+        outline: none;
+
+        background: #fff;
+
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+      }
+
+      .v-input:focus {
+        border-color: #0058ac;
+
+        box-shadow: 0 0 0 3px rgba(0, 88, 172, 0.12);
+      }
+
+      .v-input.err {
+        border-color: #dc2626;
+
+        box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+      }
+
+      .v-input.ok {
+        border-color: #16a34a;
+
+        box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+      }
+
+      /* =====================================================
+           MENSAJES DE CAMPOS
+           ===================================================== */
+
+      .field-msg {
+        display: none;
+
+        font-size: 0.72rem;
+
+        margin-top: 4px;
+
+        font-weight: 500;
+
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .field-msg.show {
+        display: flex;
+
+        align-items: center;
+
+        gap: 4px;
+      }
+
+      .field-msg.is-err {
+        color: #dc2626;
+      }
+
+      .field-msg.is-ok {
+        color: #16a34a;
+      }
+
+      /* =====================================================
+           CONTRASEÑA
+           ===================================================== */
+
+      .pw-wrap {
+        position: relative;
+      }
+
+      .pw-wrap .eye-btn {
+        position: absolute;
+
+        right: 0.9rem;
+
+        top: 50%;
+
+        transform: translateY(-50%);
+
+        background: none;
+
+        border: none;
+
+        cursor: pointer;
+
+        padding: 3px;
+
+        color: #94a3b8;
+
+        transition: color 0.2s;
+      }
+
+      .pw-wrap .eye-btn:hover {
+        color: #0058ac;
+      }
+
+      /* =====================================================
+           BARRA FORTALEZA
+           ===================================================== */
+
+      .str-track {
+        height: 4px;
+
+        background: #e2e8f0;
+
+        border-radius: 99px;
+
+        overflow: hidden;
+      }
+
+      .str-fill {
+        height: 100%;
+
+        border-radius: 99px;
+
+        width: 0%;
+
+        transition:
+          width 0.4s,
+          background 0.4s;
+      }
+
+      /* =====================================================
+           BOTONES
+           ===================================================== */
+
+      .v-btn {
+        width: 100%;
+
+        padding: 0.9rem;
+
+        border: none;
+
+        border-radius: 12px;
+
+        font-family: "Montserrat", sans-serif;
+
+        font-size: 0.9rem;
+
+        font-weight: 700;
+
+        cursor: pointer;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 8px;
+
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s,
+          opacity 0.2s,
+          background 0.3s;
+      }
+
+      .v-btn:hover:not(:disabled) {
+        transform: translateY(-1px);
+
+        box-shadow: 0 6px 20px rgba(0, 88, 172, 0.28);
+      }
+
+      .v-btn:disabled {
+        opacity: 0.6;
+
+        cursor: not-allowed;
+      }
+
+      .v-btn.primary {
+        background: #0058ac;
+
+        color: #fff;
+      }
+
+      .v-btn.secondary {
+        background: #303854;
+
+        color: #fff;
+      }
+
+      /* =====================================================
+           SPINNER
+           ===================================================== */
+
+      .spin {
+        width: 16px;
+
+        height: 16px;
+
+        border-radius: 50%;
+
+        flex-shrink: 0;
+
+        border: 2.5px solid rgba(255, 255, 255, 0.35);
+
+        border-top-color: #fff;
+
+        animation: rotate 0.7s linear infinite;
+      }
+
+      @keyframes rotate {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* =====================================================
+           BANNERS
+           ===================================================== */
+
+      .result-banner {
+        display: none;
+
+        border-radius: 12px;
+
+        padding: 0.85rem 1rem;
+
+        font-size: 0.82rem;
+
+        font-weight: 500;
+
+        font-family: "Montserrat", sans-serif;
+
+        align-items: flex-start;
+
+        gap: 10px;
+      }
+
+      .result-banner.show {
+        display: flex;
+
+        animation: formIn 0.3s ease;
+      }
+
+      .result-banner.success {
+        background: #f0fdf4;
+
+        border: 1.5px solid #86efac;
+
+        color: #15803d;
+      }
+
+      .result-banner.error {
+        background: #fef2f2;
+
+        border: 1.5px solid #fca5a5;
+
+        color: #b91c1c;
+      }
+
+      .result-banner .b-icon {
+        font-size: 1.1rem;
+
+        flex-shrink: 0;
+
+        margin-top: 1px;
+      }
+
+      /* =====================================================
+           LINKS
+           ===================================================== */
+
+      .link-btn {
+        background: none;
+
+        border: none;
+
+        cursor: pointer;
+
+        font-family: "Montserrat", sans-serif;
+
+        font-weight: 600;
+
+        color: #0058ac;
+
+        font-size: 0.85rem;
+      }
+
+      .link-btn:hover {
+        text-decoration: underline;
+      }
+
+      /* =====================================================
+           DECORACIÓN
+           ===================================================== */
+
+      .orb {
+        position: absolute;
+
+        border-radius: 50%;
+
+        background: rgba(255, 255, 255, 0.13);
+      }
+
+      input[type="checkbox"] {
+        accent-color: #0058ac;
+      }
+
+      /* =====================================================
+           TABS
+           ===================================================== */
+
+      .tab-pill {
+        flex: 1;
+
+        padding: 0.65rem;
+
+        border-radius: 10px;
+
+        border: none;
+
+        font-family: "Montserrat", sans-serif;
+
+        font-size: 0.8rem;
+
+        font-weight: 600;
+
+        cursor: pointer;
+
+        transition: all 0.25s;
+      }
+
+      .tab-pill.active {
+        background: #0058ac;
+
+        color: #fff;
+
+        box-shadow: 0 4px 12px rgba(0, 88, 172, 0.25);
+      }
+
+      .tab-pill.inactive {
+        background: transparent;
+
+        color: #64748b;
+      }
+    </style>
+  </head>
+
+  <body
+    class="bg-anim font-montserrat min-h-screen flex items-center justify-center px-4 py-10"
+  >
+    <div
+      class="card-enter w-full max-w-5xl bg-white/80 backdrop-blur-xl rounded-[2rem] shadow-2xl overflow-hidden grid md:grid-cols-2"
+    >
+      <!-- =====================================================
+         LADO IZQUIERDO
+         ===================================================== -->
+
+      <div
+        class="hidden md:flex flex-col justify-center relative overflow-hidden p-14"
+        style="
+          background: linear-gradient(
+            145deg,
+            #0058ac 0%,
+            #1d3a6e 60%,
+            #303854 100%
+          );
+        "
+      >
+        <div class="orb w-80 h-80 -top-24 -left-24"></div>
+
+        <div class="orb w-56 h-56 bottom-0 right-0"></div>
+
+        <div class="orb w-20 h-20" style="top: 45%; right: 2rem"></div>
+
+        <div class="relative z-10 text-white">
+          <div class="text-5xl mb-3">🎓</div>
+
+          <h1 class="font-playfair text-4xl font-extrabold leading-tight mb-3">
+            Bienvenido
+            <br />
+            a Vocare
+          </h1>
+
+          <p
+            class="font-montserrat text-blue-200 text-sm leading-relaxed mb-10"
+          >
+            Descubre tu verdadera vocación universitaria con una experiencia
+            moderna, inteligente y personalizada.
+          </p>
+
+          <div class="space-y-3">
+            <div
+              class="flex items-center gap-3 bg-white/10 rounded-xl px-4 py-3 text-sm backdrop-blur"
+            >
+              <span> Test de orientación vocacional inteligente </span>
+            </div>
+
+            <div
+              class="flex items-center gap-3 bg-white/10 rounded-xl px-4 py-3 text-sm backdrop-blur"
+            >
+              <span> Recomendaciones de carreras universitarias </span>
+            </div>
+
+            <div
+              class="flex items-center gap-3 bg-white/10 rounded-xl px-4 py-3 text-sm backdrop-blur"
+            >
+              <span> Recomendaciones personalizadas con IA </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- =====================================================
+         LADO DERECHO
+         ===================================================== -->
+
+      <div class="bg-white p-8 md:p-12 flex flex-col">
+        <!-- TABS -->
+
+        <div class="flex bg-slate-100 rounded-xl p-1 mb-8 gap-1">
+          <button
+            id="loginTab"
+            class="tab-pill active"
+            onclick="switchTab('login')"
+          >
+            Iniciar Sesión
+          </button>
+
+          <button
+            id="registerTab"
+            class="tab-pill inactive"
+            onclick="switchTab('register')"
+          >
+            Registrarse
+          </button>
+        </div>
+
+        <!-- =================================================
+             LOGIN
+             ================================================= -->
+
+        <form id="loginForm" class="form-anim space-y-4" novalidate>
+          <div class="mb-2">
+            <h2 class="font-playfair text-2xl font-bold" style="color: #303854">
+              Hola de nuevo
+            </h2>
+
+            <p class="text-slate-400 text-xs mt-1">
+              Ingresa tus credenciales para continuar
+            </p>
+          </div>
+
+          <div id="loginBanner" class="result-banner"></div>
+
+          <!-- CORREO -->
+
+          <div>
+            <label
+              class="text-xs font-semibold text-slate-500 uppercase tracking-wider"
+            >
+              Correo electrónico
+            </label>
+
+            <input
+              id="lEmail"
+              type="email"
+              class="v-input mt-1"
+              placeholder="correo@ejemplo.com"
+              autocomplete="email"
+            />
+
+            <span class="field-msg" id="lEmailMsg"></span>
+          </div>
+
+          <!-- CONTRASEÑA -->
+
+          <div>
+            <label
+              class="text-xs font-semibold text-slate-500 uppercase tracking-wider"
+            >
+              Contraseña
+            </label>
+
+            <div class="pw-wrap mt-1">
+              <input
+                id="lPassword"
+                type="password"
+                class="v-input pr-11"
+                placeholder="••••••••"
+                autocomplete="current-password"
+              />
+
+              <button
+                type="button"
+                class="eye-btn"
+                onclick="togglePw('lPassword', this)"
+                tabindex="-1"
+              >
+                👁
+              </button>
+            </div>
+
+            <span class="field-msg" id="lPasswordMsg"></span>
+          </div>
+
+          <!-- RECORDAR -->
+
+          <div class="flex justify-between items-center">
+            <label
+              class="flex items-center gap-2 text-slate-500 text-xs cursor-pointer"
+            >
+              <input type="checkbox" id="rememberMe" />
+
+              Recordarme
+            </label>
+
+            <button
+              type="button"
+              class="link-btn text-xs"
+              onclick="handleForgot()"
+            >
+              ¿Olvidaste tu contraseña?
+            </button>
+          </div>
+
+          <button type="submit" id="loginBtn" class="v-btn primary">
+            Ingresar
+          </button>
+
+          <p class="text-center text-xs text-slate-400">
+            ¿No tienes cuenta?
+
+            <button
+              type="button"
+              class="link-btn"
+              onclick="switchTab('register')"
+            >
+              Regístrate aquí
+            </button>
+          </p>
+        </form>
+
+        <!-- =================================================
+             REGISTRO
+             ================================================= -->
+
+        <form id="registerForm" class="form-anim space-y-4 hidden" novalidate>
+          <div class="mb-2">
+            <h2 class="font-playfair text-2xl font-bold" style="color: #303854">
+              Crear Cuenta
+            </h2>
+
+            <p class="text-slate-400 text-xs mt-1">
+              Completa los campos para registrarte
+            </p>
+          </div>
+
+          <div id="registerBanner" class="result-banner"></div>
+
+          <!-- CORREO -->
+
+          <div>
+            <label
+              class="text-xs font-semibold text-slate-500 uppercase tracking-wider"
+            >
+              Correo electrónico
+            </label>
+
+            <input
+              id="rEmail"
+              type="email"
+              class="v-input mt-1"
+              placeholder="correo@ejemplo.com"
+              autocomplete="email"
+            />
+
+            <span class="field-msg" id="rEmailMsg"></span>
+          </div>
+
+          <!-- CONTRASEÑA -->
+
+          <div>
+            <label
+              class="text-xs font-semibold text-slate-500 uppercase tracking-wider"
+            >
+              Contraseña
+            </label>
+
+            <div class="pw-wrap mt-1">
+              <input
+                id="rPassword"
+                type="password"
+                class="v-input pr-11"
+                placeholder="••••••••"
+                autocomplete="new-password"
+              />
+
+              <button
+                type="button"
+                class="eye-btn"
+                onclick="togglePw('rPassword', this)"
+                tabindex="-1"
+              >
+                👁
+              </button>
+            </div>
+
+            <div class="mt-2" id="strWrap" style="display: none">
+              <div class="str-track">
+                <div id="strFill" class="str-fill"></div>
+              </div>
+
+              <p id="strLabel" class="text-xs mt-1"></p>
+            </div>
+
+            <span class="field-msg" id="rPasswordMsg"></span>
+          </div>
+
+          <!-- CONFIRMAR -->
+
+          <div>
+            <label
+              class="text-xs font-semibold text-slate-500 uppercase tracking-wider"
+            >
+              Confirmar contraseña
+            </label>
+
+            <div class="pw-wrap mt-1">
+              <input
+                id="rConfirm"
+                type="password"
+                class="v-input pr-11"
+                placeholder="••••••••"
+                autocomplete="new-password"
+              />
+
+              <button
+                type="button"
+                class="eye-btn"
+                onclick="togglePw('rConfirm', this)"
+                tabindex="-1"
+              >
+                👁
+              </button>
+            </div>
+
+            <span class="field-msg" id="rConfirmMsg"></span>
+          </div>
+
+          <button type="submit" id="registerBtn" class="v-btn secondary">
+            Crear Cuenta
+          </button>
+
+          <p class="text-center text-xs text-slate-400">
+            ¿Ya tienes cuenta?
+
+            <button type="button" class="link-btn" onclick="switchTab('login')">
+              Inicia sesión aquí
+            </button>
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <!-- =========================================================
+     JAVASCRIPT
+     ========================================================= -->
+
+    <script>
+      /* ===========================================================
+   UTILIDAD
+   =========================================================== */
+
+      const $ = (id) => document.getElementById(id);
+
+      /* ===========================================================
+   VALIDAR EMAIL
+   =========================================================== */
+
+      function isEmail(value) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+      }
+
+      /* ===========================================================
+   CAMPOS
+   =========================================================== */
+
+      function setField(inputId, msgId, type, text) {
+        const input = $(inputId);
+
+        const msg = $(msgId);
+
+        input.classList.remove("err", "ok");
+
+        msg.classList.remove("show", "is-err", "is-ok");
+
+        if (!type) {
+          return;
+        }
+
+        input.classList.add(type === "err" ? "err" : "ok");
+
+        msg.textContent = (type === "err" ? "⚠ " : "✓ ") + text;
+
+        msg.classList.add("show", type === "err" ? "is-err" : "is-ok");
+      }
+
+      /* ===========================================================
+   BANNERS
+   =========================================================== */
+
+      function showBanner(id, type, message) {
+        const banner = $(id);
+
+        banner.className = `result-banner show ${type}`;
+
+        banner.innerHTML = `
+        <span class="b-icon">
+            ${type === "success" ? "✅" : "❌"}
+        </span>
+
+        <span>
+            ${message}
+        </span>
+    `;
+      }
+
+      function hideBanner(id) {
+        const banner = $(id);
+
+        banner.className = "result-banner";
+
+        banner.innerHTML = "";
+      }
+
+      /* ===========================================================
+   BOTÓN CARGANDO
+   =========================================================== */
+
+      function setLoading(button, active, label = "") {
+        if (active) {
+          button.disabled = true;
+
+          button.innerHTML = `
+            <span class="spin"></span>
+            Procesando…
+        `;
+        } else {
+          button.disabled = false;
+
+          button.innerHTML = label;
+        }
+      }
+
+      /* ===========================================================
+   MOSTRAR / OCULTAR CONTRASEÑA
+   =========================================================== */
+
+      function togglePw(id, button) {
+        const input = $(id);
+
+        if (input.type === "password") {
+          input.type = "text";
+
+          button.textContent = "🙈";
+        } else {
+          input.type = "password";
+
+          button.textContent = "👁";
+        }
+      }
+
+      /* ===========================================================
+   CAMBIAR TAB
+   =========================================================== */
+
+      function switchTab(tab) {
+        const loginTab = $("loginTab");
+
+        const registerTab = $("registerTab");
+
+        const loginForm = $("loginForm");
+
+        const registerForm = $("registerForm");
+
+        if (tab === "login") {
+          loginForm.classList.remove("hidden");
+
+          registerForm.classList.add("hidden");
+
+          loginTab.className = "tab-pill active";
+
+          registerTab.className = "tab-pill inactive";
+
+          hideBanner("loginBanner");
+        } else {
+          registerForm.classList.remove("hidden");
+
+          loginForm.classList.add("hidden");
+
+          registerTab.className = "tab-pill active";
+
+          loginTab.className = "tab-pill inactive";
+
+          hideBanner("registerBanner");
+        }
+      }
+
+      /* ===========================================================
+   FORMATEAR ERRORES FASTAPI
+   =========================================================== */
+
+      function obtenerMensajeError(data, fallback) {
+        if (!data) {
+          return fallback;
+        }
+
+        if (typeof data.detail === "string") {
+          return data.detail;
+        }
+
+        if (Array.isArray(data.detail)) {
+          return data.detail
+            .map((error) => error.msg || "Dato inválido")
+            .join("<br>");
+        }
+
+        return fallback;
+      }
+
+      /* ===========================================================
+   LOGIN
+   =========================================================== */
+
+      $("loginForm").addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        hideBanner("loginBanner");
+
+        const email = $("lEmail").value.trim();
+
+        const password = $("lPassword").value;
+
+        const remember = $("rememberMe").checked;
+
+        let valid = true;
+
+        /* ---------------------------------------------------
+           VALIDAR CORREO
+           --------------------------------------------------- */
+
+        if (!email) {
+          setField("lEmail", "lEmailMsg", "err", "El correo es obligatorio");
+
+          valid = false;
+        } else if (!isEmail(email)) {
+          setField("lEmail", "lEmailMsg", "err", "Formato de correo inválido");
+
+          valid = false;
+        }
+
+        /* ---------------------------------------------------
+           VALIDAR PASSWORD
+           --------------------------------------------------- */
+
+        if (!password) {
+          setField(
+            "lPassword",
+            "lPasswordMsg",
+            "err",
+            "La contraseña es obligatoria",
+          );
+
+          valid = false;
+        }
+
+        if (!valid) {
+          return;
+        }
+
+        const button = $("loginBtn");
+
+        setLoading(button, true);
+
+        try {
+          /* ===============================================
+               LLAMAR FASTAPI
+               =============================================== */
+
+          const response = await fetch("/login", {
+            method: "POST",
+
+            headers: {
+              "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify({
+              correo: email,
+
+              password: password,
+            }),
+          });
+
+          const data = await response.json();
+
+          console.log("Respuesta /login:", data);
+
+          /* ===============================================
+               ERROR DE LOGIN
+               =============================================== */
+
+          if (!response.ok) {
+            setLoading(button, false, "Ingresar");
+
+            showBanner(
+              "loginBanner",
+              "error",
+              obtenerMensajeError(data, "Correo o contraseña incorrectos."),
+            );
+
+            return;
+          }
+
+          /* ===============================================
+               VALIDAR RESPUESTA DEL BACKEND
+               =============================================== */
+
+          if (!data.usuario) {
+            console.error("El backend no devolvió usuario:", data);
+
+            setLoading(button, false, "Ingresar");
+
+            showBanner(
+              "loginBanner",
+              "error",
+              "El servidor no devolvió los datos del usuario.",
+            );
+
+            return;
+          }
+
+          /* ===============================================
+               CREAR SESIÓN
+               =============================================== */
+
+          const usuarioSesion = {
+            id_usuario: data.usuario.id_usuario,
+
+            nombre: data.usuario.nombre,
+
+            correo: data.usuario.correo,
+          };
+
+          console.log("Usuario recibido:", data.usuario);
+
+          console.log("Sesión creada:", usuarioSesion);
+
+          /* ===============================================
+               MUY IMPORTANTE
+               ===============================================
+
+               No redirigimos si no tenemos id_usuario.
+
+               Esto evita el bucle:
+
+               /login -> / -> /login -> /
+
+               =============================================== */
+
+          if (!usuarioSesion.id_usuario) {
+            console.error("Falta id_usuario:", data.usuario);
+
+            localStorage.removeItem("vocare_session");
+
+            setLoading(button, false, "Ingresar");
+
+            showBanner(
+              "loginBanner",
+              "error",
+              "El servidor no devolvió el identificador del usuario.",
+            );
+
+            return;
+          }
+
+          /* ===============================================
+               GUARDAR SESIÓN
+               =============================================== */
+
+          localStorage.setItem(
+            "vocare_session",
+
+            JSON.stringify(usuarioSesion),
+          );
+
+          /* ===============================================
+               RECORDAR CORREO
+               =============================================== */
+
+          if (remember) {
+            localStorage.setItem("vocare_remember", email);
+          } else {
+            localStorage.removeItem("vocare_remember");
+          }
+
+          /* ===============================================
+               MENSAJE
+               =============================================== */
+
+          button.style.background = "#16a34a";
+
+          button.innerHTML = "✓ Acceso exitoso";
+
+          showBanner(
+            "loginBanner",
+            "success",
+            `¡Bienvenido, <strong>${usuarioSesion.nombre}</strong>!`,
+          );
+
+          /* ===============================================
+               REDIRECCIÓN
+               =============================================== */
+
+          setTimeout(() => {
+            window.location.replace("/");
+          }, 900);
+        } catch (error) {
+          console.error("Error en login:", error);
+
+          setLoading(button, false, "Ingresar");
+
+          showBanner(
+            "loginBanner",
+            "error",
+            "No fue posible conectar con el servidor.",
+          );
+        }
+      });
+
+      /* ===========================================================
+   REGISTRO
+   =========================================================== */
+
+      $("registerForm").addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        hideBanner("registerBanner");
+
+        const email = $("rEmail").value.trim();
+
+        const password = $("rPassword").value;
+
+        const confirm = $("rConfirm").value;
+
+        let valid = true;
+
+        /* ---------------------------------------------------
+           CORREO
+           --------------------------------------------------- */
+
+        if (!email) {
+          setField("rEmail", "rEmailMsg", "err", "El correo es obligatorio");
+
+          valid = false;
+        } else if (!isEmail(email)) {
+          setField("rEmail", "rEmailMsg", "err", "Formato de correo inválido");
+
+          valid = false;
+        }
+
+        /* ---------------------------------------------------
+           CONTRASEÑA
+           --------------------------------------------------- */
+
+        if (!password) {
+          setField(
+            "rPassword",
+            "rPasswordMsg",
+            "err",
+            "La contraseña es obligatoria",
+          );
+
+          valid = false;
+        } else if (password.length < 8) {
+          setField("rPassword", "rPasswordMsg", "err", "Mínimo 8 caracteres");
+
+          valid = false;
+        } else if (!/[A-Z]/.test(password)) {
+          setField(
+            "rPassword",
+            "rPasswordMsg",
+            "err",
+            "Debe incluir al menos una mayúscula",
+          );
+
+          valid = false;
+        } else if (!/[0-9]/.test(password)) {
+          setField(
+            "rPassword",
+            "rPasswordMsg",
+            "err",
+            "Debe incluir al menos un número",
+          );
+
+          valid = false;
+        } else {
+          setField("rPassword", "rPasswordMsg", "ok", "Contraseña válida");
+        }
+
+        /* ---------------------------------------------------
+           CONFIRMACIÓN
+           --------------------------------------------------- */
+
+        if (!confirm) {
+          setField("rConfirm", "rConfirmMsg", "err", "Confirma tu contraseña");
+
+          valid = false;
+        } else if (confirm !== password) {
+          setField(
+            "rConfirm",
+            "rConfirmMsg",
+            "err",
+            "Las contraseñas no coinciden",
+          );
+
+          valid = false;
+        }
+
+        if (!valid) {
+          showBanner(
+            "registerBanner",
+            "error",
+            "Corrige los campos marcados antes de continuar.",
+          );
+
+          return;
+        }
+
+        const button = $("registerBtn");
+
+        setLoading(button, true);
+
+        try {
+          /* ===============================================
+               REGISTRO EN FASTAPI
+               =============================================== */
+
+          const response = await fetch("/register", {
+            method: "POST",
+
+            headers: {
+              "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify({
+              nombre: email.split("@")[0],
+
+              correo: email,
+
+              password: password,
+            }),
+          });
+
+          const data = await response.json();
+
+          console.log("Respuesta /register:", data);
+
+          /* ===============================================
+               ERROR
+               =============================================== */
+
+          if (!response.ok) {
+            setLoading(button, false, "Crear Cuenta");
+
+            showBanner(
+              "registerBanner",
+              "error",
+              obtenerMensajeError(data, "No fue posible registrar el usuario."),
+            );
+
+            return;
+          }
+
+          /* ===============================================
+               REGISTRO CORRECTO
+               =============================================== */
+
+          button.style.background = "#16a34a";
+
+          button.innerHTML = "✓ Cuenta creada";
+
+          showBanner(
+            "registerBanner",
+            "success",
+            "¡Registro exitoso! Ahora puedes iniciar sesión.",
+          );
+
+          /* ===============================================
+               PREPARAR LOGIN
+               =============================================== */
+
+          setTimeout(() => {
+            switchTab("login");
+
+            $("lEmail").value = email;
+
+            $("lPassword").value = "";
+
+            $("registerForm").reset();
+
+            setLoading(button, false, "Crear Cuenta");
+
+            button.style.background = "";
+
+            $("lPassword").focus();
+          }, 1200);
+        } catch (error) {
+          console.error("Error registrando:", error);
+
+          setLoading(button, false, "Crear Cuenta");
+
+          showBanner(
+            "registerBanner",
+            "error",
+            "No fue posible conectar con el servidor.",
+          );
+        }
+      });
+
+      /* ===========================================================
+   FORTALEZA DE CONTRASEÑA
+   =========================================================== */
+
+      $("rPassword").addEventListener("input", function () {
+        const password = this.value;
+
+        const wrap = $("strWrap");
+
+        const fill = $("strFill");
+
+        const label = $("strLabel");
+
+        if (!password) {
+          wrap.style.display = "none";
+
+          return;
+        }
+
+        wrap.style.display = "block";
+
+        let score = 0;
+
+        if (password.length >= 8) {
+          score++;
+        }
+
+        if (/[A-Z]/.test(password)) {
+          score++;
+        }
+
+        if (/[0-9]/.test(password)) {
+          score++;
+        }
+
+        if (/[^A-Za-z0-9]/.test(password)) {
+          score++;
+        }
+
+        const levels = [
+          {
+            width: "18%",
+            color: "#dc2626",
+            text: "Muy débil",
+          },
+
+          {
+            width: "38%",
+            color: "#ea580c",
+            text: "Débil",
+          },
+
+          {
+            width: "60%",
+            color: "#ca8a04",
+            text: "Moderada",
+          },
+
+          {
+            width: "82%",
+            color: "#16a34a",
+            text: "Fuerte",
+          },
+
+          {
+            width: "100%",
+            color: "#15803d",
+            text: "Muy fuerte",
+          },
+        ];
+
+        const level = levels[score];
+
+        fill.style.width = level.width;
+
+        fill.style.background = level.color;
+
+        label.textContent = level.text;
+
+        label.style.color = level.color;
+      });
+
+      /* ===========================================================
+   CONFIRMACIÓN EN TIEMPO REAL
+   =========================================================== */
+
+      $("rConfirm").addEventListener("input", function () {
+        if (!this.value) {
+          setField("rConfirm", "rConfirmMsg", null, "");
+
+          return;
+        }
+
+        if (this.value === $("rPassword").value) {
+          setField(
+            "rConfirm",
+            "rConfirmMsg",
+            "ok",
+            "Las contraseñas coinciden",
+          );
+        } else {
+          setField(
+            "rConfirm",
+            "rConfirmMsg",
+            "err",
+            "Las contraseñas no coinciden",
+          );
+        }
+      });
+
+      /* ===========================================================
+   LIMPIAR ERRORES
+   =========================================================== */
+
+      ["lEmail", "lPassword"].forEach((id) => {
+        $(id).addEventListener("input", () => {
+          setField(id, id + "Msg", null, "");
+
+          hideBanner("loginBanner");
+        });
+      });
+
+      ["rEmail", "rPassword"].forEach((id) => {
+        $(id).addEventListener("input", () => {
+          setField(id, id + "Msg", null, "");
+
+          hideBanner("registerBanner");
+        });
+      });
+
+      /* ===========================================================
+   RECUPERAR CONTRASEÑA
+   =========================================================== */
+
+      function handleForgot() {
+        hideBanner("loginBanner");
+
+        const email = $("lEmail").value.trim();
+
+        if (!email || !isEmail(email)) {
+          setField("lEmail", "lEmailMsg", "err", "Escribe un correo válido");
+
+          return;
+        }
+
+        showBanner(
+          "loginBanner",
+          "success",
+          `Recuperación solicitada para <strong>${email}</strong>.`,
+        );
+      }
+
+      /* ===========================================================
+   INICIALIZACIÓN
+   =========================================================== */
+
+      document.addEventListener("DOMContentLoaded", function () {
+        /* ---------------------------------------------------
+           RECORDAR CORREO
+           --------------------------------------------------- */
+
+        const rememberedEmail = localStorage.getItem("vocare_remember");
+
+        if (rememberedEmail) {
+          $("lEmail").value = rememberedEmail;
+
+          $("rememberMe").checked = true;
+        }
+
+        /* ---------------------------------------------------
+           COMPROBAR SESIÓN EXISTENTE
+
+           ESTA ES LA PARTE QUE EVITA EL BUCLE.
+           --------------------------------------------------- */
+
+        const sessionText = localStorage.getItem("vocare_session");
+
+        if (!sessionText) {
+          console.log("No existe sesión previa.");
+
+          return;
+        }
+
+        try {
+          const session = JSON.parse(sessionText);
+
+          console.log("Sesión encontrada:", session);
+
+          /* ===============================================
+               SOLO REDIRIGIR SI HAY id_usuario
+               =============================================== */
+
+          if (session && session.id_usuario) {
+            console.log("Sesión válida. Redirigiendo a inicio.");
+
+            window.location.replace("/");
+
+            return;
+          }
+
+          /* ===============================================
+               SESIÓN INVÁLIDA
+               =============================================== */
+
+          console.warn("Sesión inválida. Se eliminará.");
+
+          localStorage.removeItem("vocare_session");
+        } catch (error) {
+          console.error("Error leyendo sesión:", error);
+
+          localStorage.removeItem("vocare_session");
+        }
+      });
+    </script>
+  </body>
+</html>

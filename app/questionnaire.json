@@ -1,0 +1,242 @@
+[
+  {
+    "orden": 1,
+    "pregunta": "Me interesa conocer cómo funcionan las computadoras y los sistemas tecnológicos."
+  },
+  {
+    "orden": 2,
+    "pregunta": "Disfruto resolver problemas utilizando lógica y razonamiento."
+  },
+  {
+    "orden": 3,
+    "pregunta": "Me interesa aprender lenguajes de programación y crear soluciones mediante código."
+  },
+  {
+    "orden": 4,
+    "pregunta": "Me gustaría diseñar sistemas o aplicaciones que solucionen problemas reales."
+  },
+  {
+    "orden": 5,
+    "pregunta": "Me interesa analizar grandes cantidades de información para encontrar patrones."
+  },
+  {
+    "orden": 6,
+    "pregunta": "Disfruto trabajar con matemáticas, estadísticas y datos numéricos."
+  },
+  {
+    "orden": 7,
+    "pregunta": "Me gustaría utilizar datos para realizar predicciones o apoyar la toma de decisiones."
+  },
+  {
+    "orden": 8,
+    "pregunta": "Me interesa investigar por qué ocurre un problema antes de buscar una solución."
+  },
+  {
+    "orden": 9,
+    "pregunta": "Me interesa aprender cómo proteger computadoras, redes e información digital."
+  },
+  {
+    "orden": 10,
+    "pregunta": "Me llama la atención investigar amenazas, vulnerabilidades o comportamientos sospechosos."
+  },
+  {
+    "orden": 11,
+    "pregunta": "Disfruto enfrentar problemas tecnológicos que requieren atención a los detalles."
+  },
+  {
+    "orden": 12,
+    "pregunta": "Me interesa conocer cómo se comunican diferentes dispositivos a través de redes."
+  },
+  {
+    "orden": 13,
+    "pregunta": "Me gustaría trabajar con redes, servidores o infraestructura tecnológica."
+  },
+  {
+    "orden": 14,
+    "pregunta": "Me interesan las tecnologías relacionadas con Internet, señales y comunicaciones."
+  },
+  {
+    "orden": 15,
+    "pregunta": "Me gustaría participar en proyectos donde se desarrollen aplicaciones o sistemas informáticos."
+  },
+  {
+    "orden": 16,
+    "pregunta": "Me gusta crear cosas nuevas y mejorar continuamente la forma en que funcionan."
+  },
+  {
+    "orden": 17,
+    "pregunta": "Soy paciente al buscar errores y corregir problemas hasta encontrar una solución."
+  },
+  {
+    "orden": 18,
+    "pregunta": "Me interesa organizar personas y recursos para alcanzar determinados objetivos."
+  },
+  {
+    "orden": 19,
+    "pregunta": "Me gustaría dirigir equipos o asumir responsabilidades de liderazgo."
+  },
+  {
+    "orden": 20,
+    "pregunta": "Me interesa conocer cómo funcionan las empresas y cómo toman sus decisiones."
+  },
+  {
+    "orden": 21,
+    "pregunta": "Me gustaría crear o administrar mi propio negocio en el futuro."
+  },
+  {
+    "orden": 22,
+    "pregunta": "Disfruto comunicar ideas de manera creativa para llamar la atención de otras personas."
+  },
+  {
+    "orden": 23,
+    "pregunta": "Me interesa comprender qué motiva a las personas a elegir determinados productos o servicios."
+  },
+  {
+    "orden": 24,
+    "pregunta": "Me llaman la atención la publicidad, las redes sociales y la creación de contenido."
+  },
+  {
+    "orden": 25,
+    "pregunta": "Disfruto proponer ideas nuevas y buscar maneras creativas de presentar algo."
+  },
+  {
+    "orden": 26,
+    "pregunta": "Me siento cómodo trabajando con cálculos, presupuestos y registros financieros."
+  },
+  {
+    "orden": 27,
+    "pregunta": "Me interesa conocer cómo una empresa administra sus ingresos, gastos y recursos financieros."
+  },
+  {
+    "orden": 28,
+    "pregunta": "Soy cuidadoso al revisar números, documentos y pequeños detalles."
+  },
+  {
+    "orden": 29,
+    "pregunta": "Me gustaría analizar información financiera para detectar errores o irregularidades."
+  },
+  {
+    "orden": 30,
+    "pregunta": "Me interesa escuchar a otras personas y comprender sus pensamientos o emociones."
+  },
+  {
+    "orden": 31,
+    "pregunta": "Me gustaría ayudar a las personas a resolver problemas personales, emocionales o sociales."
+  },
+  {
+    "orden": 32,
+    "pregunta": "Me interesa comprender por qué las personas se comportan de determinada manera."
+  },
+  {
+    "orden": 33,
+    "pregunta": "Me considero una persona empática y capaz de comunicarme con diferentes tipos de personas."
+  },
+  {
+    "orden": 34,
+    "pregunta": "Me interesa analizar y mejorar procesos para hacerlos más eficientes."
+  },
+  {
+    "orden": 35,
+    "pregunta": "Me gustaría encontrar formas de reducir tiempo, costos o recursos dentro de una organización."
+  },
+  {
+    "orden": 36,
+    "pregunta": "Me interesa experimentar con sustancias para comprender sus transformaciones químicas."
+  },
+  {
+    "orden": 37,
+    "pregunta": "Me gustaría diseñar procesos para fabricar productos como alimentos, combustibles o materiales."
+  },
+  {
+    "orden": 38,
+    "pregunta": "Disfrutaría calcular cantidades y condiciones necesarias para realizar una reacción química."
+  },
+  {
+    "orden": 39,
+    "pregunta": "Me interesa evaluar la seguridad y el impacto ambiental de los procesos químicos industriales."
+  },
+  {
+    "orden": 40,
+    "pregunta": "Me gustaría trabajar en un laboratorio para comprobar la calidad de materiales o productos."
+  },
+  {
+    "orden": 41,
+    "pregunta": "Me interesa comprender cómo resisten las cargas los edificios, puentes y otras estructuras."
+  },
+  {
+    "orden": 42,
+    "pregunta": "Me gustaría interpretar planos y representar espacios mediante dibujos técnicos."
+  },
+  {
+    "orden": 43,
+    "pregunta": "Me interesa estudiar suelos y materiales para construir obras seguras."
+  },
+  {
+    "orden": 44,
+    "pregunta": "Disfrutaría planificar y supervisar la construcción de carreteras, edificios o sistemas de agua."
+  },
+  {
+    "orden": 45,
+    "pregunta": "Me gustaría aplicar física y matemáticas para resolver problemas de infraestructura."
+  },
+  {
+    "orden": 46,
+    "pregunta": "Me interesa leer e interpretar leyes para comprender los derechos y obligaciones de las personas."
+  },
+  {
+    "orden": 47,
+    "pregunta": "Disfruto construir argumentos apoyados en pruebas y analizar puntos de vista opuestos."
+  },
+  {
+    "orden": 48,
+    "pregunta": "Me gustaría orientar a personas sobre cómo resolver conflictos mediante procedimientos legales."
+  },
+  {
+    "orden": 49,
+    "pregunta": "Me interesa analizar casos y documentos para determinar cómo se aplica una norma."
+  },
+  {
+    "orden": 50,
+    "pregunta": "Me gustaría participar en la defensa de derechos y en el acceso a la justicia."
+  },
+  {
+    "orden": 51,
+    "pregunta": "Me interesa investigar cómo viven, se reproducen y evolucionan los seres vivos."
+  },
+  {
+    "orden": 52,
+    "pregunta": "Disfrutaría observar organismos y registrar información durante investigaciones de campo."
+  },
+  {
+    "orden": 53,
+    "pregunta": "Me gustaría estudiar células, genes y microorganismos mediante trabajo de laboratorio."
+  },
+  {
+    "orden": 54,
+    "pregunta": "Me interesa comprender las relaciones entre especies y su ambiente."
+  },
+  {
+    "orden": 55,
+    "pregunta": "Me gustaría investigar formas de conservar la biodiversidad y los ecosistemas."
+  },
+  {
+    "orden": 56,
+    "pregunta": "Me interesa estudiar el cuerpo humano y cómo funcionan sus órganos."
+  },
+  {
+    "orden": 57,
+    "pregunta": "Me gustaría aprender a identificar enfermedades a partir de síntomas y exámenes clínicos."
+  },
+  {
+    "orden": 58,
+    "pregunta": "Me interesa atender directamente a personas que necesitan cuidados de salud."
+  },
+  {
+    "orden": 59,
+    "pregunta": "Estaría dispuesto a formarme para actuar con responsabilidad ante urgencias de salud."
+  },
+  {
+    "orden": 60,
+    "pregunta": "Me gustaría estudiar tratamientos y medidas para prevenir enfermedades en las personas."
+  }
+]
